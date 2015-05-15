@@ -79,7 +79,6 @@ public class TwitterDataDownloader {
 				in.close();
 				List<TweetDAO> temp = parseTweetsFromJSON(response.toString());
 				totalTweets.addAll(temp);
-				System.out.println(temp.size());
 				countTweetsRetrieved+= temp.size();
 				offset = countTweetsRetrieved+1;
 				
@@ -93,7 +92,6 @@ public class TwitterDataDownloader {
 				e.printStackTrace();
 			}
 		} while (moreResults && countTweetsRetrieved < maxTweetCount );
-		System.out.println(totalTweets.size());
 		return totalTweets;
 	}
 
