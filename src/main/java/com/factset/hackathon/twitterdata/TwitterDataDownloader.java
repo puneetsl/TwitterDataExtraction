@@ -8,7 +8,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.concurrent.ArrayBlockingQueue;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.client.utils.URLEncodedUtils;
@@ -131,7 +130,7 @@ public class TwitterDataDownloader {
 			    tweet.setTweet(rec.getJSONObject("tweet").getString("text"));
 			    tweet.setDate(rec.getJSONObject("tweet").getString("created_at"));
 			    tweet.setFirstPostDate(rec.getInt("firstpost_date"));
-			    
+			    tweet.setAuthorInfluenceLevel(rec.getJSONObject("author").getDouble("influence_level"));
 			    tweets.add(tweet);
 			}
 			

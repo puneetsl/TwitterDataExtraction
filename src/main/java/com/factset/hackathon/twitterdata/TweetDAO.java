@@ -1,13 +1,11 @@
 package com.factset.hackathon.twitterdata;
 
-import java.util.Date;
-
 public class TweetDAO {
 
 	
 	String tweet;
 	String date;
-	float sentimentValue;
+	double authorInfluenceLevel;
 	int firstPostDate ;
 
 	public int getFirstPostDate() {
@@ -28,11 +26,11 @@ public class TweetDAO {
 	public void setDate(String date) {
 		this.date = date;
 	}
-	public float getSentimentValue() {
-		return sentimentValue;
+	public double getAuthorInfluenceLevel() {
+		return authorInfluenceLevel;
 	}
-	public void setSentimentValue(float sentimentValue) {
-		this.sentimentValue = sentimentValue;
+	public void setAuthorInfluenceLevel(double authorInfluenceLevel) {
+		this.authorInfluenceLevel = authorInfluenceLevel;
 	}
 	
 	
