@@ -2,3 +2,4 @@ Google=google[1000], goog[1000], google inc[500], google shares[300], google mar
 Facebook=facebook[1000], fb[300], facebook inc[500],facebook shares[300], facebook launches[200], facebook market[200]
 Apple=aapl[500], apple inc[1000], apple market[300], apple shares[300], iphone market[200]
 Microsoft=msft[500], microsoft[1000], ms office[100], microsoft corporation[200], microsoft windows[200]
+FactSet=fds[500], factset research systems inc[300], factset[100], factset stock[200], factset market[300]
