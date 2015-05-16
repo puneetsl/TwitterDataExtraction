@@ -5,8 +5,18 @@ public class TweetDAO {
 	
 	String tweet;
 	String date;
-	double authorInfluenceLevel;
+	int authorInfluenceLevel;
 	int firstPostDate ;
+
+	public double getRankingScore() {
+		return rankingScore;
+	}
+
+	public void setRankingScore(double rankingScore) {
+		this.rankingScore = rankingScore;
+	}
+
+	double rankingScore;
 
 	public int getFirstPostDate() {
 		return firstPostDate;
@@ -26,10 +36,10 @@ public class TweetDAO {
 	public void setDate(String date) {
 		this.date = date;
 	}
-	public double getAuthorInfluenceLevel() {
+	public int getAuthorInfluenceLevel() {
 		return authorInfluenceLevel;
 	}
-	public void setAuthorInfluenceLevel(double authorInfluenceLevel) {
+	public void setAuthorInfluenceLevel(int authorInfluenceLevel) {
 		this.authorInfluenceLevel = authorInfluenceLevel;
 	}
 	

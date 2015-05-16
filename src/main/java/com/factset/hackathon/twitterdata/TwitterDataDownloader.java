@@ -130,7 +130,10 @@ public class TwitterDataDownloader {
 			    tweet.setTweet(rec.getJSONObject("tweet").getString("text"));
 			    tweet.setDate(rec.getJSONObject("tweet").getString("created_at"));
 			    tweet.setFirstPostDate(rec.getInt("firstpost_date"));
-			    tweet.setAuthorInfluenceLevel(rec.getJSONObject("author").getDouble("influence_level"));
+				if(rec.getJSONObject("author").has("influence_level"))
+			    	tweet.setAuthorInfluenceLevel(rec.getJSONObject("author").getInt("influence_level"));
+				if(rec.getJSONObject("metrics").has("ranking_score"))
+					tweet.setRankingScore(rec.getJSONObject("metrics").getDouble("ranking_score"));
 			    tweets.add(tweet);
 			}
 			

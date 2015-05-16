@@ -52,23 +52,24 @@ public class WriteTweetData {
         {
             basePath="TwitterData";
         }
-        if(!basePath.endsWith("/")) basePath+="/";
+        if(!basePath.endsWith("\\")) basePath+="\\";
         for (int i = 0; i < ack.size(); i++) {
             mkdir(basePath,ack.get(i).getCompany_name());
             for (int j = 0; j < ack.get(i).getKeywords().size(); j++) {
                 List<TweetDAO> td =  TwitterDataDownloader.getTweets(ack.get(i).getKeywords().get(j).getKeyword(), String.valueOf(getEpoch(startDate)), String.valueOf(getEpoch(startDate)), ack.get(i).getKeywords().get(j).getMax_tweets());
-                writeTweets(td,ack.get(i).getKeywords().get(j).getKeyword(),basePath+ack.get(i).getCompany_name());
+                writeTweets(td,ack.get(i).getKeywords().get(j).getKeyword(),startDate,basePath+ack.get(i).getCompany_name());
+                td.clear();
             }
 
         }
         return true;
     }
 
-    private void writeTweets(List<TweetDAO> td, String keyword, String path) {
+    private void writeTweets(List<TweetDAO> td, String keyword,String date, String path) {
         try{
-            PrintWriter writer = new PrintWriter(path+"/"+keyword.replace(" ","_")+".csv", "UTF-8");
+            PrintWriter writer = new PrintWriter(path+"/"+keyword.replace(" ","_")+"_"+date+".csv", "UTF-8");
             for (int i = 0; i < td.size(); i++) {
-                writer.print(td.get(i).getDate() + "~" + td.get(i).getAuthorInfluenceLevel() + "~");
+                writer.print(td.get(i).getDate() + "~" + td.get(i).getAuthorInfluenceLevel() + "~"+ td.get(i).getRankingScore() + "~");
                 writer.println(td.get(i).getTweet().replace("\n", " ").replace("\r", ""));
             }
             writer.close();
