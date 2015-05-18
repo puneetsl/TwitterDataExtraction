@@ -48,6 +48,7 @@ public class TwitterDataDownloader {
 	public static List<TweetDAO> getTweets(String company, String startTime,
 			String endTime, int maxTweetCount) {
 		List<TweetDAO> totalTweets = new ArrayList<TweetDAO>();
+		System.out.println("Params to get tweets: "+ company+"\n"+startTime+"\n"+endTime+"\n"+maxTweetCount);
 		boolean moreResults=false;
 		int offset = 0;
 		int perPage =0;

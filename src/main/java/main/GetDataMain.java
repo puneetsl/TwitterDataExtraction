@@ -2,12 +2,13 @@ package main;
 
 import com.factset.hackathon.beans.CompanyKeywords;
 import com.factset.hackathon.reader.ReadCompanyList;
-import com.factset.hackathon.twitterdata.TweetDAO;
+import com.factset.hackathon.utils.*;
 import com.factset.hackathon.twitterdata.TwitterDataDownloader;
 import com.factset.hackathon.writer.WriteTweetData;
+import org.joda.time.LocalDate;
 
 import java.util.ArrayList;
-import java.util.List;
+
 
 /**
  * Created by pludu on 5/15/2015.
@@ -20,18 +21,16 @@ public class GetDataMain {
         String bp = "TwitterData";
         wtd.setPath(bp);
         ArrayList<CompanyKeywords> ck = rcl.loadList("LookupData/CompanyList.txt");
-        for (int i = 1; i < 10; i++) {
-            wtd.writeData(ck,bp,"05"+getDate(i)+"2015","05"+getDate(i+1)+"2015");
+        LocalDate start = new LocalDate(2015, 4 , 1);//yyyy,mm,dd
+        LocalDate end = new LocalDate(2015, 5, 15);
+        for (LocalDate date : new LocalDateRange(start, end))
+        {
+            wtd.writeData(ck, bp, getDate(date.toString()), getDate(date.plusDays(1).toString()));
         }
-
     }
-    static String getDate(int i)
+    static String getDate(String date)
     {
-        String date;
-        if(i<10)
-            date="0"+i;
-        else
-            date=String.valueOf(i);
-        return date;
+        String[] dateArr = date.split("-");
+        return dateArr[1]+dateArr[2]+dateArr[0];
     }
 }
