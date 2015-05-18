@@ -24,6 +24,6 @@ public class CompanyKeywords {
         Keyword k = new Keyword(keyword,max_tweets);
         keywords.add(k);
     }
-    private ArrayList<Keyword> keywords;
+    private ArrayList<Keyword> keywords = new ArrayList<Keyword>();
 
 }

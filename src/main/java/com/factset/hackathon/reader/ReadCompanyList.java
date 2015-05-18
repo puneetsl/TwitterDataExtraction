@@ -25,12 +25,10 @@ public class ReadCompanyList {
                     CompanyKeywords ck = new CompanyKeywords();
                     String[] companyInfo= line.split("=");
                     ck.setCompany_name(companyInfo[0]);
-                    System.out.println(companyInfo[0]);
                     String[] keywordList = companyInfo[1].split(",");
                     for (int i = 0; i < keywordList.length; i++) {
                         String[] keyword = keywordList[i].split("-");
                         String max_tweets = keyword[1];
-                        System.out.println(keyword[0]);
                         ck.addKeyword(keyword[0].trim(),Integer.parseInt(max_tweets));
                     }
                     ack.add(ck);
@@ -38,8 +36,6 @@ public class ReadCompanyList {
             }
         } catch (IOException ioe) {
             ioe.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
         }
         return ack;
     }

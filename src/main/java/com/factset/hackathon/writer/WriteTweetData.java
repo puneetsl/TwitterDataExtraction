@@ -52,7 +52,7 @@ public class WriteTweetData {
         {
             basePath="TwitterData";
         }
-        if(!basePath.endsWith("\\")) basePath+="\\";
+        if(!basePath.endsWith("/")) basePath+="/";
         for (int i = 0; i < ack.size(); i++) {
             mkdir(basePath,ack.get(i).getCompany_name());
             for (int j = 0; j < ack.get(i).getKeywords().size(); j++) {
