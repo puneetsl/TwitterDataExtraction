@@ -26,10 +26,10 @@ public class ReadCompanyList {
                     String[] companyInfo= line.split("=");
                     ck.setCompany_name(companyInfo[0]);
                     String[] keywordList = companyInfo[1].split(",");
-                    for (int i = 0; i < keywordList.length; i++) {
-                        String[] keyword = keywordList[i].split("-");
+                    for (String aKeywordList : keywordList) {
+                        String[] keyword = aKeywordList.split("-");
                         String max_tweets = keyword[1];
-                        ck.addKeyword(keyword[0].trim(),Integer.parseInt(max_tweets));
+                        ck.addKeyword(keyword[0].trim(), Integer.parseInt(max_tweets));
                     }
                     ack.add(ck);
                 }

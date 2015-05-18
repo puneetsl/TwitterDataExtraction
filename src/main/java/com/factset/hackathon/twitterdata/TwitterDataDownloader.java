@@ -29,11 +29,11 @@ public class TwitterDataDownloader {
 	/**
 	 * q mintime maxtime include_metrics apikey perpage
 	 */
-	final static String STRING_URL = "http://api.topsy.com/v2/content/tweets.json";
+	private final static String STRING_URL = "http://api.topsy.com/v2/content/tweets.json";
 
-	final static int PERPAGE_MAX = 1000;
+	private final static int PERPAGE_MAX = 1000;
 	
-	public static String apiKey;
+	private static String apiKey;
 
 	public static void setApiKey(String apiKey) {
 		TwitterDataDownloader.apiKey = apiKey;
@@ -71,7 +71,7 @@ public class TwitterDataDownloader {
 				BufferedReader in = new BufferedReader(new InputStreamReader(
 						con.getInputStream()));
 				String inputLine;
-				StringBuffer response = new StringBuffer();
+				StringBuilder response = new StringBuilder();
 
 				while ((inputLine = in.readLine()) != null) {
 					response.append(inputLine);
@@ -91,12 +91,12 @@ public class TwitterDataDownloader {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		} while (moreResults && countTweetsRetrieved < maxTweetCount );
+		} while (moreResults && countTweetsRetrieved < maxTweetCount );//BUG: moreResults is always false
 		return totalTweets;
 	}
 
-	public static String buildUrl(String url, String company, String startTime,
-			String endTime, int offset,int count) {
+	private static String buildUrl(String url, String company, String startTime,
+								   String endTime, int offset, int count) {
 		if (!url.endsWith("?"))
 			url += "?";
 
@@ -117,7 +117,7 @@ public class TwitterDataDownloader {
 
 	}
 	
-	public static List<TweetDAO> parseTweetsFromJSON(String jsonString)
+	private static List<TweetDAO> parseTweetsFromJSON(String jsonString)
 	{
 
 		List<TweetDAO> tweets = new ArrayList<TweetDAO>();

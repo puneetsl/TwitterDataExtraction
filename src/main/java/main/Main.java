@@ -1,10 +1,6 @@
 package main;
 
-import com.factset.hackathon.beans.CompanyKeywords;
-import com.factset.hackathon.reader.ReadCompanyList;
 import com.factset.hackathon.twitterdata.TwitterDataDownloader;
-
-import java.util.ArrayList;
 
 
 /**

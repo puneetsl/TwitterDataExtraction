@@ -3,10 +3,10 @@ package com.factset.hackathon.twitterdata;
 public class TweetDAO {
 
 	
-	String tweet;
-	String date;
-	int authorInfluenceLevel;
-	int firstPostDate ;
+	private String tweet;
+	private String date;
+	private int authorInfluenceLevel;
+	private int firstPostDate ;
 
 	public double getRankingScore() {
 		return rankingScore;
@@ -16,7 +16,7 @@ public class TweetDAO {
 		this.rankingScore = rankingScore;
 	}
 
-	double rankingScore;
+	private double rankingScore;
 
 	public int getFirstPostDate() {
 		return firstPostDate;
