@@ -28,7 +28,7 @@ public class GetDataMain {
             wtd.writeData(ck, bp, getDate(date.toString()), getDate(date.plusDays(1).toString()));
         }
     }
-    static String getDate(String date)
+    private static String getDate(String date)
     {
         String[] dateArr = date.split("-");
         return dateArr[1]+dateArr[2]+dateArr[0];

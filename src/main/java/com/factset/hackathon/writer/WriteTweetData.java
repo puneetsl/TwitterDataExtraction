@@ -50,21 +50,23 @@ public class WriteTweetData {
             basePath = "TwitterData";
         }
         if (!basePath.endsWith("/")) basePath += "/";
-        for (int i = 0; i < ack.size(); i++) {
+        for (CompanyKeywords anAck : ack) {
             try {
-                mkdir(basePath, ack.get(i).getCompany_name());
-                mkdir(basePath, ack.get(i).getCompany_name()+ "/complete");
-                PrintWriter mainwriter = new PrintWriter(basePath + ack.get(i).getCompany_name() + "/complete/" + startDate + ".csv", "UTF-8");
-                for (int j = 0; j < ack.get(i).getKeywords().size(); j++) {
-                    List<TweetDAO> td = TwitterDataDownloader.getTweets(ack.get(i).getKeywords().get(j).getKeyword(), String.valueOf(getEpoch(startDate)), String.valueOf(getEpoch(endDate)), ack.get(i).getKeywords().get(j).getMax_tweets());
-                    writeTweets(td, ack.get(i).getKeywords().get(j).getKeyword(), startDate, basePath + ack.get(i).getCompany_name(),mainwriter);
+                mkdir(basePath, anAck.getCompany_name());
+                mkdir(basePath, anAck.getCompany_name() + "/complete");
+                PrintWriter mainwriter = new PrintWriter(basePath + anAck.getCompany_name() + "/complete/" + startDate + ".csv", "UTF-8");
+                for (int j = 0; j < anAck.getKeywords().size(); j++) {
+                    List<TweetDAO> td = TwitterDataDownloader.getTweets(anAck.getKeywords().get(j).getKeyword(), String.valueOf(getEpoch(startDate)), String.valueOf(getEpoch(endDate)), anAck.getKeywords().get(j).getMax_tweets());
+                    writeTweets(td, anAck.getKeywords().get(j).getKeyword(), startDate, basePath + anAck.getCompany_name(), mainwriter);
                     td.clear();
                 }
                 mainwriter.close();
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
+                return false;
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
+                return false;
             }
         }
         return true;
@@ -73,11 +75,11 @@ public class WriteTweetData {
     private void writeTweets(List<TweetDAO> td, String keyword, String date, String path, PrintWriter pw) {
         try {
             PrintWriter writer = new PrintWriter(path + "/" + keyword.replace(" ", "_") + "_" + date + ".csv", "UTF-8");
-            for (int i = 0; i < td.size(); i++) {
-                writer.print(td.get(i).getDate() + "~" + td.get(i).getAuthorInfluenceLevel() + "~" + td.get(i).getRankingScore() + "~");
-                writer.println(td.get(i).getTweet().replace("\n", " ").replace("\r", ""));
-                pw.print(td.get(i).getDate() + "~" + td.get(i).getAuthorInfluenceLevel() + "~" + td.get(i).getRankingScore() + "~");
-                pw.println(td.get(i).getTweet().replace("\n", " ").replace("\r", ""));
+            for (TweetDAO aTd : td) {
+                writer.print(aTd.getDate() + "~" + aTd.getAuthorInfluenceLevel() + "~" + aTd.getRankingScore() + "~");
+                writer.println(aTd.getTweet().replace("\n", " ").replace("\r", ""));
+                pw.print(aTd.getDate() + "~" + aTd.getAuthorInfluenceLevel() + "~" + aTd.getRankingScore() + "~");
+                pw.println(aTd.getTweet().replace("\n", " ").replace("\r", ""));
             }
             writer.close();
         } catch (FileNotFoundException e) {
